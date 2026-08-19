@@ -1,1 +1,50 @@
-<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Register Admin · Hubla/doc</title>@vite(['resources/css/app.css','resources/js/app.js'])</head><body class="grid min-h-screen grid-cols-2 bg-[#263b32] max-md:grid-cols-1"><div class="flex flex-col bg-[#f5f3ee] px-[12%] py-[8vh] max-md:px-6 max-md:py-[35px]"><a class="mb-12 flex items-center gap-2.5 text-lg font-extrabold tracking-[-.04em]" href="{{ route('home') }}"><span class="grid h-[31px] w-[31px] place-items-center bg-[#17221d] text-sm text-[#d8f06a]">H</span><span>Hubla<span class="text-[#728078]">/doc</span></span></a><p class="mb-[17px] font-mono text-[10px] uppercase tracking-[.13em] text-[#89958e]">Admin baru</p><h1 class="m-0 text-[52px] font-extrabold leading-none tracking-[-.07em] max-md:text-[42px]">Buat akun<br><em class="not-italic text-[#839a38]">workspace.</em></h1><p class="my-5 max-w-[390px] text-[13px] leading-6 text-[#728078]">Gunakan kode registrasi yang diberikan oleh pemilik aplikasi.</p><form class="grid max-w-[390px] gap-3.5" method="POST" action="{{ route('admin.register.store') }}">@csrf<label class="grid gap-2 text-[11px] text-[#728078]">Nama<input class="border border-[#dce1da] bg-white p-[13px] outline-[#a5bd53]" type="text" name="name" value="{{ old('name') }}" required autofocus></label><label class="grid gap-2 text-[11px] text-[#728078]">Email<input class="border border-[#dce1da] bg-white p-[13px] outline-[#a5bd53]" type="email" name="email" value="{{ old('email') }}" required></label><label class="grid gap-2 text-[11px] text-[#728078]">Password<input class="border border-[#dce1da] bg-white p-[13px] outline-[#a5bd53]" type="password" name="password" required minlength="8"></label><label class="grid gap-2 text-[11px] text-[#728078]">Konfirmasi password<input class="border border-[#dce1da] bg-white p-[13px] outline-[#a5bd53]" type="password" name="password_confirmation" required minlength="8"></label><label class="grid gap-2 text-[11px] text-[#728078]">Kode registrasi admin<input class="border border-[#dce1da] bg-white p-[13px] outline-[#a5bd53]" type="password" name="registration_key" required></label>@if($errors->any())<div class="bg-[#fae5e1] px-4 py-3 text-[11px] text-[#943a31]">{{ $errors->first() }}</div>@endif<button class="mt-2 w-full bg-[#263b32] px-4 py-3 text-[11px] text-white hover:bg-[#385747]" type="submit">Buat akun admin ↗</button></form><p class="mt-5 max-w-[390px] text-center text-[11px] text-[#728078]">Sudah punya akun? <a class="font-semibold text-[#69803d] underline" href="{{ route('login') }}">Kembali ke login</a></p></div><div class="grid -rotate-2 place-items-center bg-[#b7cd68] text-center font-extrabold leading-[.82] tracking-[-.09em] text-[#263b32] text-[clamp(55px,8vw,120px)] max-md:hidden">BUILD<br>THE<br>ARCHIVE</div></body></html>
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register Admin · Hubla/doc</title>@vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+<body class="grid min-h-screen grid-cols-2 bg-[#263b32] max-md:grid-cols-1">
+    <div class="flex flex-col bg-[#f5f3ee] px-[12%] py-[8vh] max-md:px-6 max-md:py-[35px]"><a
+            class="mb-12 flex items-center gap-2.5 text-lg font-extrabold tracking-[-.04em]"
+            href="{{ route('home') }}"><span
+                class="grid h-[31px] w-[31px] place-items-center bg-[#17221d] text-sm text-[#d8f06a]">H</span><span>Hubla<span
+                    class="text-[#728078]">/doc</span></span></a>
+        <p class="mb-[17px] font-mono text-[10px] uppercase tracking-[.13em] text-[#89958e]">Admin baru</p>
+        <h1 class="m-0 text-[52px] font-extrabold leading-none tracking-[-.07em] max-md:text-[42px]">Buat akun<br><em
+                class="not-italic text-[#839a38]">workspace.</em></h1>
+        <p class="my-5 max-w-[390px] text-[13px] leading-6 text-[#728078]">Gunakan kode registrasi yang diberikan oleh
+            pemilik aplikasi.</p>
+        <form class="grid max-w-[390px] gap-3.5" method="POST" action="{{ route('admin.register.store') }}">@csrf<label
+                class="grid gap-2 text-[11px] text-[#728078]">Nama<input
+                    class="border border-[#dce1da] bg-white p-[13px] outline-[#a5bd53]" type="text" name="name"
+                    value="{{ old('name') }}" required autofocus></label><label
+                class="grid gap-2 text-[11px] text-[#728078]">Email<input
+                    class="border border-[#dce1da] bg-white p-[13px] outline-[#a5bd53]" type="email" name="email"
+                    value="{{ old('email') }}" required></label><label
+                class="grid gap-2 text-[11px] text-[#728078]">Password<input
+                    class="border border-[#dce1da] bg-white p-[13px] outline-[#a5bd53]" type="password" name="password"
+                    required minlength="8"></label><label class="grid gap-2 text-[11px] text-[#728078]">Konfirmasi
+                password<input class="border border-[#dce1da] bg-white p-[13px] outline-[#a5bd53]" type="password"
+                    name="password_confirmation" required minlength="8"></label><label
+                class="grid gap-2 text-[11px] text-[#728078]">Kode registrasi admin<input
+                    class="border border-[#dce1da] bg-white p-[13px] outline-[#a5bd53]" type="password"
+                    name="registration_key" required></label>
+            @if ($errors->any())
+                <div class="bg-[#fae5e1] px-4 py-3 text-[11px] text-[#943a31]">{{ $errors->first() }}</div>
+            @endif
+            <button class="mt-2 w-full bg-[#263b32] px-4 py-3 text-[11px] text-white hover:bg-[#385747]"
+                type="submit">Buat akun admin ↗</button>
+        </form>
+        <p class="mt-5 max-w-[390px] text-center text-[11px] text-[#728078]">Sudah punya akun? <a
+                class="font-semibold text-[#69803d] underline" href="{{ route('login') }}">Kembali ke login</a></p>
+    </div>
+    <div
+        class="grid -rotate-2 place-items-center bg-[#b7cd68] text-center font-extrabold leading-[.82] tracking-[-.09em] text-[#263b32] text-[clamp(55px,8vw,120px)] max-md:hidden">
+        BUILD<br>THE<br>ARCHIVE</div>
+</body>
+
+</html>
