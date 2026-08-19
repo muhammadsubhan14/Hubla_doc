@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --ink: #17221d;
+        --muted: #728078;
+        --paper: #f5f3ee;
+        --line: #dce1da;
+        --accent: #d8f06a;
+        --deep: #263b32;
+        --danger: #a33d35;
+    }
+
+    body {
+        @apply m-0 bg-[#f5f3ee] font-sans text-[#17221d];
+        font-family: Manrope, sans-serif;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+        font: inherit;
+    }
+}
