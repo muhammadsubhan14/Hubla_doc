@@ -1,6 +1,78 @@
 @extends('layouts.public')
 @section('content')
-<section class="mx-auto flex min-h-[430px] w-[min(1160px,calc(100%-48px))] items-center justify-between border-b border-[#dce1da] max-md:block max-md:min-h-[500px] max-md:pt-[110px]"><div><p class="mb-[17px] font-mono text-[10px] uppercase tracking-[.13em] text-[#89958e]">Koleksi kegiatan · 2026</p><h1 class="m-0 text-[clamp(43px,6vw,82px)] font-extrabold leading-[.98] tracking-[-.07em]">Momen yang layak<br><em class="not-italic text-[#839a38]">diingat kembali.</em></h1><p class="mt-7 max-w-[390px] text-[15px] leading-7 text-[#728078]">Arsip visual kegiatan Hubla, dikurasi agar setiap cerita tetap hidup dan mudah ditemukan.</p></div><div class="font-mono text-[90px] tracking-[-.11em] text-[#263b32] max-md:mt-[70px] max-md:text-[57px]">{{ str_pad($documentations->total(), 2, '0', STR_PAD_LEFT) }}<span class="block text-right font-sans text-[10px] tracking-normal text-[#728078]"> dokumentasi</span></div></section>
-<section class="mx-auto w-[min(1160px,calc(100%-48px))] py-[92px] pb-[110px] max-md:py-[60px]"><div class="mb-[30px] flex items-end justify-between max-md:items-start max-md:gap-5"><div><p class="mb-[17px] font-mono text-[10px] uppercase tracking-[.13em] text-[#89958e]">Arsip terbaru</p><h2 class="m-0 text-[35px] font-bold tracking-[-.06em]">Jelajahi kegiatan</h2></div><p class="max-w-[220px] text-xs leading-6 text-[#728078]">Foto, cerita, dan orang-orang di balik setiap kegiatan.</p></div>
-@if($documentations->count())<div class="grid grid-cols-3 gap-[18px] max-md:grid-cols-1">@foreach($documentations as $documentation)<a class="group border border-[#dce1da] bg-white transition duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_35px_rgba(38,59,50,.08)]" href="{{ route('documentations.show', $documentation) }}"><div class="relative aspect-[1.18] overflow-hidden bg-[#dfe4dc]">@if($documentation->coverImage)<img class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="{{ Storage::url($documentation->coverImage->image_path) }}" alt="{{ $documentation->title }}">@else<div class="grid h-full place-items-center text-xs text-[#728078]">Belum ada foto</div>@endif<span class="absolute right-[15px] top-[15px] grid h-[33px] w-[33px] translate-y-1 place-items-center bg-[#d8f06a] opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">↗</span></div><div class="p-[23px]"><p class="mb-[13px] font-mono text-[10px] uppercase text-[#84983c]">{{ $documentation->event_date->translatedFormat('d F Y') }}</p><h3 class="m-0 mb-2 text-[19px] font-bold tracking-[-.04em]">{{ $documentation->title }}</h3><p class="text-xs text-[#728078]">⌖ {{ $documentation->location }}</p><p class="min-h-10 text-xs leading-5 text-[#728078]">{{ Str::limit($documentation->description, 115) }}</p><span class="mt-4 inline-flex gap-3 font-mono text-[11px] uppercase">Lihat dokumentasi <span class="text-[17px] text-[#879c37]">→</span></span></div></a>@endforeach</div><div class="mt-9">{{ $documentations->links() }}</div>@else<div class="border border-dashed border-[#c7d0c5] p-[70px_20px] text-center text-[#728078]"><span class="text-[28px] text-[#93a63d]">✦</span><h3 class="text-[#17221d]">Belum ada dokumentasi</h3><p>Koleksi kegiatan akan tampil di sini.</p></div>@endif</section>
+    <main class="bg-[#f7f8fa] text-[#102a43]">
+        @if ($featured)
+            <section class="relative min-h-[min(720px,78vh)] overflow-hidden bg-[#1d2421]">
+                @if ($featured->coverImage)
+                    <img class="absolute inset-0 h-full w-full object-cover opacity-70"
+                        src="{{ Storage::url($featured->coverImage->image_path) }}" alt="{{ $featured->title }}">
+                @endif
+                <div class="absolute inset-0 bg-gradient-to-r from-[#0d1412] via-[#0d1412aa] to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-[#14141433]"></div>
+                <div
+                    class="relative mx-auto flex min-h-[min(720px,78vh)] w-[min(1280px,calc(100%-48px))] items-end pb-[clamp(70px,10vw,130px)]">
+                    <div class="max-w-[650px] lg:pl-16 xl:pl-24">
+                        <p class="mb-5 font-mono text-[10px] uppercase tracking-[.16em] text-[#d8f06a]">Dokumentasi terbaru
+                        </p>
+                        <h1 class="font-display text-[clamp(48px,7vw,96px)] font-medium leading-[.88] tracking-[-.045em]">
+                            {{ $featured->title }}</h1>
+                        <div class="mt-6 flex flex-wrap items-center gap-4 text-xs text-white/70">
+                            <span>{{ $featured->event_date->translatedFormat('d F Y') }}</span><span
+                                class="h-1 w-1 rounded-full bg-[#d8f06a]"></span><span>{{ $featured->location }}</span>
+                        </div>
+                        <p class="mt-5 max-w-[520px] text-sm leading-6 text-white/70">
+                            {{ Str::limit($featured->description, 170) }}</p>
+                        <a class="mt-7 inline-flex items-center gap-3 bg-white px-5 py-3 text-xs font-bold text-[#141414] transition hover:bg-[#d8f06a]"
+                            href="{{ route('documentations.show', $featured) }}">Lihat detail <span
+                                class="text-base">↗</span></a>
+                    </div>
+                </div>
+            </section>
+            @if ($carouselDocumentations->isNotEmpty())
+                <section class="mx-auto w-[min(1280px,calc(100%-48px))] pb-16 pt-2">
+                    <div class="mb-5 flex items-end justify-between">
+                        <div>
+                            <p class="mb-2 font-mono text-[10px] uppercase tracking-[.16em] text-[#89958e]">Arsip pilihan
+                            </p>
+                            <h2 class="font-display text-[34px] font-medium tracking-[-.035em]">Dokumentasi lainnya</h2>
+                        </div>
+                        <div class="flex gap-2"><button
+                                class="grid h-9 w-9 place-items-center border border-[#c7d4e1] text-lg transition hover:border-[#839a38] hover:text-[#6f8535]"
+                                type="button" data-carousel-prev aria-label="Dokumentasi sebelumnya">←</button><button
+                                class="grid h-9 w-9 place-items-center border border-[#c7d4e1] text-lg transition hover:border-[#839a38] hover:text-[#6f8535]"
+                                type="button" data-carousel-next aria-label="Dokumentasi berikutnya">→</button></div>
+                    </div>
+                    <div class="-mx-2 flex snap-x snap-mandatory gap-3 overflow-x-auto px-2 pb-5 scrollbar-none"
+                        data-documentation-carousel>
+                        @foreach ($carouselDocumentations as $documentation)
+                            <a class="group w-[min(300px,72vw)] flex-none snap-start"
+                                href="{{ route('documentations.show', $documentation) }}">
+                                <div class="relative aspect-video overflow-hidden rounded-sm bg-[#28302c]"><img
+                                        class="h-full w-full object-cover opacity-90 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
+                                        src="{{ $documentation->coverImage ? Storage::url($documentation->coverImage->image_path) : '' }}"
+                                        alt="{{ $documentation->title }}"><span
+                                        class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></span><span
+                                        class="absolute bottom-3 left-3 font-mono text-[10px] text-white/80">{{ $documentation->event_date->format('d M Y') }}</span><span
+                                        class="absolute right-3 top-3 grid h-8 w-8 translate-y-1 place-items-center bg-[#d8f06a] text-[#102a43] opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">↗</span>
+                                </div>
+                                <h3 class="mt-3 line-clamp-2 font-display text-[23px] leading-tight tracking-[-.02em]">
+                                    {{ $documentation->title }}</h3>
+                                <p class="mt-1 text-xs text-[#71869c]">⌖ {{ $documentation->location }}</p>
+                            </a>
+                        @endforeach
+                    </div>
+                    <div class="mt-7">{{ $documentations->links() }}</div>
+                </section>
+            @endif
+        @else
+            <section
+                class="mx-auto flex min-h-[70vh] w-[min(1160px,calc(100%-48px))] items-center justify-center text-center">
+                <div>
+                    <p class="font-mono text-[10px] uppercase tracking-[.16em] text-[#d8f06a]">Arsip kegiatan</p>
+                    <h1 class="mt-4 font-display text-6xl text-[#102a43]">Belum ada dokumentasi</h1>
+                    <p class="mt-4 text-[#71869c]">Koleksi kegiatan akan tampil di sini.</p>
+                </div>
+            </section>
+        @endif
+    </main>
 @endsection

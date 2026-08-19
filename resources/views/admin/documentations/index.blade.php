@@ -3,8 +3,9 @@
     <div class="mb-[35px] flex items-end justify-between gap-5 max-md:items-start">
         <div>
             <p class="mb-[17px] font-mono text-[10px] uppercase tracking-[.13em] text-[#89958e]">Arsip kegiatan</p>
-            <h1 class="m-0 text-[40px] font-bold tracking-[-.06em] max-md:text-[30px]">Dokumentasi</h1>
-        </div><a class="bg-[#263b32] px-4 py-3 text-[11px] text-white" href="{{ route('admin.documentations.create') }}">＋
+            <h1 class="m-0 font-display text-[44px] font-medium tracking-[-.04em] max-md:text-[34px]">Dokumentasi</h1>
+        </div><a class="bg-[#102a43] px-4 py-3 text-[11px] text-white transition hover:bg-[#1d405e]"
+            href="{{ route('admin.documentations.create') }}">＋
             Tambah</a>
     </div>
     <div class="overflow-auto border border-[#dce1da] bg-white">

@@ -2,7 +2,13 @@
 export default {
     content: ["./resources/views/**/*.blade.php", "./resources/js/**/*.js"],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                sans: ["Manrope", "sans-serif"],
+                display: ["Newsreader", "Georgia", "serif"],
+                mono: ["DM Mono", "monospace"],
+            },
+        },
     },
     plugins: [],
 };

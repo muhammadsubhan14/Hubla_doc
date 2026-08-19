@@ -3,14 +3,15 @@
     <div class="mb-[35px] flex items-end justify-between gap-5 max-md:items-start">
         <div>
             <p class="mb-[17px] font-mono text-[10px] uppercase tracking-[.13em] text-[#89958e]">Kelola arsip</p>
-            <h1 class="m-0 text-[40px] font-bold tracking-[-.06em] max-md:text-[30px]">{{ $documentation->title }}</h1>
+            <h1 class="m-0 font-display text-[44px] font-medium tracking-[-.04em] max-md:text-[34px]">
+                {{ $documentation->title }}</h1>
         </div><a class="bg-[#e8ece4] px-4 py-3 text-[11px]" href="{{ route('documentations.show', $documentation) }}"
             target="_blank">Lihat public ↗</a>
     </div>@include('admin.documentations.form')<section class="mt-[60px]">
         <div class="mb-[30px]">
             <p class="mb-[17px] font-mono text-[10px] uppercase tracking-[.13em] text-[#89958e]">
                 {{ $documentation->images->count() }} / 20 foto digunakan</p>
-            <h2 class="m-0 text-[35px] font-bold tracking-[-.06em]">Kelola foto</h2>
+            <h2 class="m-0 font-display text-[38px] font-medium tracking-[-.035em]">Kelola foto</h2>
         </div>
         <form class="mb-6 flex items-end gap-4 bg-[#edf2e7] p-[22px] max-md:grid max-md:items-start" method="POST"
             action="{{ route('admin.documentations.images.store', $documentation) }}" enctype="multipart/form-data">

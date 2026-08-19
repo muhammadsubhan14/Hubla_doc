@@ -3,8 +3,9 @@
     <div class="mb-[35px] flex items-end justify-between gap-5 max-md:items-start">
         <div>
             <p class="mb-[17px] font-mono text-[10px] uppercase tracking-[.13em] text-[#89958e]">Overview</p>
-            <h1 class="m-0 text-[40px] font-bold tracking-[-.06em] max-md:text-[30px]">Dashboard</h1>
-        </div><a class="bg-[#263b32] px-4 py-3 text-[11px] text-white" href="{{ route('admin.documentations.create') }}">＋
+            <h1 class="m-0 font-display text-[44px] font-medium tracking-[-.04em] max-md:text-[34px]">Dashboard</h1>
+        </div><a class="bg-[#102a43] px-4 py-3 text-[11px] text-white transition hover:bg-[#1d405e]"
+            href="{{ route('admin.documentations.create') }}">＋
             Dokumentasi baru</a>
     </div>
     <div class="grid grid-cols-3 gap-3.5 max-md:grid-cols-1">
@@ -22,7 +23,7 @@
         <div class="mb-[30px] flex items-end justify-between">
             <div>
                 <p class="mb-[17px] font-mono text-[10px] uppercase tracking-[.13em] text-[#89958e]">Terbaru</p>
-                <h2 class="m-0 text-[35px] font-bold tracking-[-.06em]">Dokumentasi terakhir</h2>
+                <h2 class="m-0 font-display text-[38px] font-medium tracking-[-.035em]">Dokumentasi terakhir</h2>
             </div><a class="font-mono text-[11px] uppercase" href="{{ route('admin.documentations.index') }}">Lihat semua
                 →</a>
         </div>

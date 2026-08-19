@@ -53,4 +53,19 @@ if (lightbox && items.length) {
             lightbox.querySelector("[data-lightbox-next]").click();
     });
 }
-import "./bootstrap";
+
+const carousel = document.querySelector("[data-documentation-carousel]");
+const previousButton = document.querySelector("[data-carousel-prev]");
+const nextButton = document.querySelector("[data-carousel-next]");
+
+if (carousel && previousButton && nextButton) {
+    const scrollDistance = () => Math.min(carousel.clientWidth * 0.82, 660);
+
+    previousButton.addEventListener("click", () => {
+        carousel.scrollBy({ left: -scrollDistance(), behavior: "smooth" });
+    });
+
+    nextButton.addEventListener("click", () => {
+        carousel.scrollBy({ left: scrollDistance(), behavior: "smooth" });
+    });
+}

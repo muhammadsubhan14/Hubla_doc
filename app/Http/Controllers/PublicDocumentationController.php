@@ -10,9 +10,14 @@ class PublicDocumentationController extends Controller
 {
     public function index()
     {
-        $documentations = Documentation::with('coverImage')->latest('event_date')->paginate(9);
+        $documentations = Documentation::with('coverImage')
+            ->latest('created_at')
+            ->latest('id')
+            ->paginate(9);
+        $featured = $documentations->getCollection()->first();
+        $carouselDocumentations = $documentations->getCollection()->skip(1);
 
-        return view('public.index', compact('documentations'));
+        return view('public.index', compact('documentations', 'featured', 'carouselDocumentations'));
     }
 
     public function show(Documentation $documentation)
