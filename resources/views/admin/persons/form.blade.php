@@ -1,1 +1,17 @@
-<form class="grid max-w-[600px] gap-5 border border-[#dce1da] bg-white p-[30px]" method="POST" action="{{ $person ? route('admin.persons.update', $person) : route('admin.persons.store') }}" enctype="multipart/form-data">@csrf @if($person) @method('PUT') @endif<label class="grid gap-2 text-[11px] text-[#728078]">Nama<input class="border border-[#dce1da] bg-[#fbfcf9] p-3 outline-[#a5bd53]" name="name" value="{{ old('name', $person?->name) }}" required></label><label class="grid gap-2 text-[11px] text-[#728078]">Jabatan / peran<input class="border border-[#dce1da] bg-[#fbfcf9] p-3 outline-[#a5bd53]" name="position" value="{{ old('position', $person?->position) }}" required></label><label class="grid gap-2 text-[11px] text-[#728078]">Foto profil<input class="block text-xs" type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label><button class="w-fit bg-[#263b32] px-4 py-3 text-[11px] text-white" type="submit">{{ $person ? 'Simpan perubahan' : 'Tambah PIC' }} ↗</button></form>
+<form class="grid max-w-[600px] gap-5 border border-[#dce1da] bg-white p-[30px]" method="POST"
+    action="{{ $person ? route('admin.persons.update', $person) : route('admin.persons.store') }}"
+    enctype="multipart/form-data">
+    @csrf @if ($person)
+        @method('PUT')
+    @endif
+    <label class="grid gap-2 text-[11px] text-[#728078]">Nama<input
+            class="border border-[#dce1da] bg-[#fbfcf9] p-3 outline-[#a5bd53]" name="name"
+            value="{{ old('name', $person?->name) }}" required></label><label
+        class="grid gap-2 text-[11px] text-[#728078]">Jabatan / peran<input
+            class="border border-[#dce1da] bg-[#fbfcf9] p-3 outline-[#a5bd53]" name="position"
+            value="{{ old('position', $person?->position) }}" required></label><label
+        class="grid gap-2 text-[11px] text-[#728078]">Foto profil<input class="block text-xs" type="file"
+            name="photo" accept="image/jpeg,image/png,image/webp"></label><button
+        class="w-fit bg-[#263b32] px-4 py-3 text-[11px] text-white"
+        type="submit">{{ $person ? 'Simpan perubahan' : 'Tambah PIC' }} ↗</button>
+</form>
