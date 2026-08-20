@@ -3,7 +3,7 @@
     <div class="mb-[35px] flex items-end justify-between gap-5 max-md:items-start">
         <div>
             <p class="mb-[17px] font-mono text-[10px] uppercase tracking-[.13em] text-[#89958e]">Orang di balik kegiatan</p>
-            <h1 class="m-0 text-[40px] font-bold tracking-[-.06em] max-md:text-[30px]">PIC</h1>
+            <h1 class="m-0 text-[40px] font-bold tracking-[-.06em] max-md:text-[30px]">Person In Charge</h1>
         </div><a class="bg-[#263b32] px-4 py-3 text-[11px] text-white" href="{{ route('admin.persons.create') }}">＋ Tambah
             PIC</a>
     </div>
