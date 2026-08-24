@@ -10,8 +10,7 @@
 
 <body class="min-h-screen overflow-x-hidden bg-[#0f1b26] font-sans text-white">
     <main class="relative min-h-screen overflow-hidden">
-        <div
-            class="absolute inset-0 grid grid-cols-2 gap-1 opacity-80 sm:grid-cols-4 lg:grid-cols-6">
+        <div class="absolute inset-0 grid grid-cols-2 gap-1 opacity-80 sm:grid-cols-4 lg:grid-cols-6">
             @forelse ($images as $index => $image)
                 <img class="aspect-square h-full w-full object-cover transition duration-700 hover:scale-105"
                     src="{{ Storage::url($image->image_path) }}"
@@ -31,7 +30,7 @@
                     class="grid h-[31px] w-[31px] place-items-center bg-[#d8f06a] text-sm text-[#102a43]">H</span><span>Hubla<span
                         class="text-white/60">/doc</span></span></a><a
                 class="font-mono text-[10px] uppercase tracking-[.12em] text-white/75 transition hover:text-[#d8f06a]"
-                href="/admin/login">Admin workspace ↗</a></header>
+                href="/admin/login"></a></header>
         <section class="relative z-10 flex min-h-screen items-center justify-center px-6 text-center">
             <div
                 class="max-w-[760px] rounded-lg border border-white/30 bg-[#08131f]/85 px-8 py-9 shadow-2xl backdrop-blur-sm sm:px-14 sm:py-12">
@@ -49,7 +48,8 @@
         </section>
         <div
             class="absolute bottom-6 left-6 z-10 font-mono text-[9px] uppercase tracking-[.12em] text-white/50 sm:left-10 lg:left-16">
-            {{ $images->count() }} foto dalam arsip</div>
+            {{ $images->count() }} foto dalam arsip
+        </div>
         <div
             class="absolute bottom-6 right-6 z-10 font-mono text-[9px] uppercase tracking-[.12em] text-white/50 sm:right-10 lg:right-16">
             Scroll to explore</div>
