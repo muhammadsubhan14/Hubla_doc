@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Documentation;
+use App\Models\Image;
 
 use Illuminate\Http\Request;
 
 class PublicDocumentationController extends Controller
 {
+    public function landing()
+    {
+        $images = Image::with('documentation')->latest()->limit(40)->get();
+
+        return view('public.landing', compact('images'));
+    }
+
     public function index()
     {
         $documentations = Documentation::with('coverImage')

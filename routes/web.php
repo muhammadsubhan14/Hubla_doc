@@ -8,7 +8,8 @@ use App\Http\Controllers\Admin\PersonController;
 use App\Http\Controllers\PublicDocumentationController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [PublicDocumentationController::class, 'index'])->name('home');
+Route::get('/', [PublicDocumentationController::class, 'landing'])->name('home');
+Route::get('/documentations', [PublicDocumentationController::class, 'index'])->name('documentations.index');
 Route::get('/documentations/{documentation}', [PublicDocumentationController::class, 'show'])->name('documentations.show');
 
 Route::redirect('/login', '/admin/login')->name('login.redirect');
