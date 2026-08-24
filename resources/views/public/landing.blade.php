@@ -11,18 +11,18 @@
 <body class="min-h-screen overflow-x-hidden bg-[#0f1b26] font-sans text-white">
     <main class="relative min-h-screen overflow-hidden">
         <div
-            class="absolute inset-4 grid grid-cols-4 grid-rows-10 gap-2 rounded-lg opacity-40 sm:inset-10 sm:grid-cols-8 sm:gap-2.5 lg:inset-24 lg:grid-cols-[repeat(14,minmax(0,1fr))] lg:gap-3">
+            class="absolute inset-0 grid grid-cols-2 gap-1 opacity-80 sm:grid-cols-4 lg:grid-cols-6">
             @forelse ($images as $index => $image)
-                <img class="h-full min-h-[48px] w-full rounded-sm object-cover grayscale-[.35] transition duration-700 hover:scale-105 hover:grayscale-0 {{ $index % 13 === 0 ? 'row-span-2' : '' }} {{ $index % 17 === 0 ? 'col-span-2' : '' }}"
+                <img class="aspect-square h-full w-full object-cover transition duration-700 hover:scale-105"
                     src="{{ Storage::url($image->image_path) }}"
                     alt="{{ $image->documentation?->title ?? 'Dokumentasi kegiatan' }}">
             @empty
                 <div class="col-span-full row-span-full bg-[#27445b]"></div>
             @endforelse
         </div>
-        <div class="absolute inset-0 bg-[#0b1722]/76"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-[#0b1722]/70 via-[#0b1722]/65 to-[#0b1722]/92"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,#0b1722aa_0%,#0b1722aa_42%,#0b1722e6_100%)]">
+        <div class="absolute inset-0 bg-[#0b1722]/15"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0b1722]/20 via-[#0b1722]/10 to-[#0b1722]/50"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,#0b172222_0%,#0b172244_42%,#0b172299_100%)]">
         </div>
         <header
             class="absolute left-0 right-0 top-0 z-10 flex items-center justify-between px-6 py-6 sm:px-10 lg:px-16"><a

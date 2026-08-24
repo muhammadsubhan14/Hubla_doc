@@ -29,39 +29,55 @@
                 </div>
             </section>
             @if ($carouselDocumentations->isNotEmpty())
-                <section class="mx-auto w-[min(1280px,calc(100%-48px))] pb-16 pt-2">
-                    <div class="mb-5 flex items-end justify-between">
+                <section class="mx-auto w-[min(1280px,calc(100%-48px))] pb-20 pt-10">
+                    <div class="mb-6 flex items-end justify-between border-b border-[#e2e8f0] pb-4">
                         <div>
-                            <p class="mb-2 font-mono text-[10px] uppercase tracking-[.16em] text-[#89958e]">Arsip pilihan
-                            </p>
-                            <h2 class="font-display text-[34px] font-medium tracking-[-.035em]">Dokumentasi lainnya</h2>
+                            <p class="mb-1 font-mono text-[10px] uppercase tracking-[.16em] text-[#718096]">Arsip Dokumentasi</p>
+                            <h2 class="font-display text-3xl font-bold tracking-[-.03em] text-[#1a202c]">Dokumentasi lainnya</h2>
                         </div>
-                        <div class="flex gap-2"><button
-                                class="grid h-9 w-9 place-items-center border border-[#c7d4e1] text-lg transition hover:border-[#839a38] hover:text-[#6f8535]"
-                                type="button" data-carousel-prev aria-label="Dokumentasi sebelumnya">←</button><button
-                                class="grid h-9 w-9 place-items-center border border-[#c7d4e1] text-lg transition hover:border-[#839a38] hover:text-[#6f8535]"
-                                type="button" data-carousel-next aria-label="Dokumentasi berikutnya">→</button></div>
+                        <div class="flex gap-2">
+                            <button
+                                class="grid h-10 w-10 place-items-center rounded-full border border-[#cbd5e0] bg-white text-lg font-bold text-[#4a5568] transition-all hover:border-[#102a43] hover:bg-[#102a43] hover:text-white"
+                                type="button" data-carousel-prev aria-label="Dokumentasi sebelumnya">←</button>
+                            <button
+                                class="grid h-10 w-10 place-items-center rounded-full border border-[#cbd5e0] bg-white text-lg font-bold text-[#4a5568] transition-all hover:border-[#102a43] hover:bg-[#102a43] hover:text-white"
+                                type="button" data-carousel-next aria-label="Dokumentasi berikutnya">→</button>
+                        </div>
                     </div>
-                    <div class="-mx-2 flex snap-x snap-mandatory gap-3 overflow-x-auto px-2 pb-5 scrollbar-none"
+                    
+                    <div class="-mx-2 flex snap-x snap-mandatory gap-6 overflow-x-auto px-2 pb-6 scrollbar-none"
                         data-documentation-carousel>
                         @foreach ($carouselDocumentations as $documentation)
-                            <a class="group w-[min(300px,72vw)] flex-none snap-start"
+                            <a class="group flex w-[320px] flex-none snap-start flex-col overflow-hidden rounded-lg border border-[#e2e8f0] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#cbd5e0] hover:shadow-md"
                                 href="{{ route('documentations.show', $documentation) }}">
-                                <div class="relative aspect-video overflow-hidden rounded-sm bg-[#28302c]"><img
-                                        class="h-full w-full object-cover opacity-90 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
+                                <div class="relative aspect-[16/10] overflow-hidden bg-[#edf2f7]">
+                                    <img class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                         src="{{ $documentation->coverImage ? Storage::url($documentation->coverImage->image_path) : '' }}"
-                                        alt="{{ $documentation->title }}"><span
-                                        class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></span><span
-                                        class="absolute bottom-3 left-3 font-mono text-[10px] text-white/80">{{ $documentation->event_date->format('d M Y') }}</span><span
-                                        class="absolute right-3 top-3 grid h-8 w-8 translate-y-1 place-items-center bg-[#d8f06a] text-[#102a43] opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">↗</span>
+                                        alt="{{ $documentation->title }}">
+                                    <span class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></span>
+                                    <span class="absolute bottom-3 left-3 rounded bg-black/40 px-2 py-0.5 font-mono text-[9px] text-white backdrop-blur-sm">
+                                        {{ $documentation->event_date->translatedFormat('d M Y') }}
+                                    </span>
                                 </div>
-                                <h3 class="mt-3 line-clamp-2 font-display text-[23px] leading-tight tracking-[-.02em]">
-                                    {{ $documentation->title }}</h3>
-                                <p class="mt-1 text-xs text-[#71869c]">⌖ {{ $documentation->location }}</p>
+                                <div class="flex flex-1 flex-col p-5">
+                                    <p class="mb-1.5 font-mono text-[9px] uppercase tracking-wider text-[#d8f06a] bg-[#102a43] px-2 py-0.5 rounded self-start">
+                                        {{ $documentation->location }}
+                                    </p>
+                                    <h3 class="line-clamp-2 font-display text-lg font-bold leading-snug tracking-tight text-[#2d3748] transition-colors group-hover:text-[#102a43]">
+                                        {{ $documentation->title }}
+                                    </h3>
+                                    <p class="mt-2 line-clamp-2 flex-1 text-xs leading-relaxed text-[#718096]">
+                                        {{ Str::limit($documentation->description, 100) }}
+                                    </p>
+                                    <div class="mt-4 flex items-center justify-between border-t border-[#f7fafc] pt-3 font-mono text-[10px] uppercase tracking-wider text-[#4a5568]">
+                                        <span>Lihat detail</span>
+                                        <span class="text-base text-[#102a43] transition-transform duration-300 group-hover:translate-x-1">→</span>
+                                    </div>
+                                </div>
                             </a>
                         @endforeach
                     </div>
-                    <div class="mt-7">{{ $documentations->links() }}</div>
+                    <div class="mt-8 border-t border-[#e2e8f0] pt-6 flex justify-center">{{ $documentations->links() }}</div>
                 </section>
             @endif
         @else
